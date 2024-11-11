@@ -1,0 +1,34 @@
+<%- include('header.ejs', { pageTitle: 'Création jardin' }) %>
+
+<main class="container mt-5">
+  <h1>Créer un nouveau jardin</h1>
+  
+  <!-- Formulaire de création de jardin -->
+  <form action="creer_jardin" method="POST">
+    <!-- Champ caché pour l'ID de l'utilisateur -->
+    <input type="hidden" name="userId" value="<%= userId %>">
+
+    <!-- Champ pour le nom du jardin -->
+    <div class="form-group">
+      <label for="nom">Nom du jardin :</label>
+      <input type="text" class="form-control" id="nom" name="nom" required>
+    </div>
+
+    <!-- Champ pour l'adresse du jardin -->
+    <div class="form-group">
+      <label for="adresse">Adresse du jardin :</label>
+      <input type="text" class="form-control" id="adresse" name="adresse" required>
+    </div>
+
+    <!-- Champ pour la taille du jardin en m² -->
+    <div class="form-group">
+      <label for="taille">Taille du jardin (en m²) :</label>
+      <input type="number" class="form-control" id="taille" name="taille" min="1" required>
+    </div>
+
+    <!-- Bouton de soumission -->
+    <button type="submit" class="btn btn-primary mt-3">Créer le jardin</button>
+  </form>
+</main>
+
+<%- include('footer.ejs') %>

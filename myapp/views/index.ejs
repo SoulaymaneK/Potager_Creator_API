@@ -1,0 +1,131 @@
+<%- include('header.ejs', { pageTitle: 'Connexion - PotagerCreator' }) %>
+
+<body>
+
+<div class="container mt-5"> 
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="text-center mb-4">
+        <h2>Bienvenue</h2>
+      </div>
+      <div class="text-center mb-3">
+        <button type="button" class="btn btn-success btn-block mb-2" data-toggle="modal" data-target="#connexionModal">Connexion</button>
+        <button type="button" class="btn btn-outline-success btn-block mb-2" data-toggle="modal" data-target="#inscriptionModal">Inscription</button>
+        <button type="button" class="btn btn-outline-danger btn-block mb-2" data-toggle="modal" data-target="#connexionAdminModal">Connexion Admin</button> <!-- Admin Button -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Connexion -->
+<div class="modal fade" id="connexionModal" tabindex="-1" role="dialog" aria-labelledby="connexionModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="--bs-success-bg-subtle: #d1e7dd; --bs-success-border-subtle: #badbcc;">
+        <h5 class="modal-title" id="connexionModalLabel">Connexion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulaire de Connexion -->
+        <form action="/connexion" method="post">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="mail" placeholder="Entrez votre email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre mot de passe" required>
+          </div>
+          <button type="submit" class="btn btn-success btn-block mb-2">Se connecter</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal d'Inscription -->
+<div class="modal fade" id="inscriptionModal" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="--bs-success-bg-subtle: #d1e7dd; --bs-success-border-subtle: #badbcc;">
+        <h5 class="modal-title" id="inscriptionModalLabel">Inscription</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulaire d'Inscription -->
+        <form action="/inscription" method="post">
+          <div class="form-group">
+            <label for="Prenom">Prénom</label>
+            <input type="text" class="form-control" id="Prenom" name="Prenom" placeholder="Entrez votre prénom" required>
+          </div>
+          <div class="form-group">
+            <label for="Nom">Nom</label>
+            <input type="text" class="form-control" id="Nom" name="Nom" placeholder="Entrez votre nom" required>
+          </div>
+          <div class="form-group">
+            <label for="newEmail">Email</label>
+            <input type="email" class="form-control" id="newEmail" name="newEmail" placeholder="Entrez votre email" required>
+          </div>
+          <div class="form-group">
+            <label for="Telephone">Téléphone</label>
+            <input type="tel" class="form-control" id="Telephone" name="Telephone" placeholder="Entrez votre téléphone" required>
+          </div>
+          <div class="form-group">
+            <label for="newPassword">Mot de passe</label>
+            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Entrez votre mot de passe"
+                   pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}" required>
+            <small id="passwordHelpInline" class="form-text text-muted">
+              Au minimum 12 caractères comprenant des majuscules, des minuscules, des chiffres et des caractères spéciaux.
+            </small>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirmer mot de passe</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirmez votre mot de passe" required>
+          </div>
+          <button type="submit" class="btn btn-success btn-block mb-2">S'inscrire</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal de Connexion Admin -->
+<div class="modal fade" id="connexionAdminModal" tabindex="-1" role="dialog" aria-labelledby="connexionAdminModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="--bs-success-bg-subtle: #d1e7dd; --bs-success-border-subtle: #badbcc;">
+        <h5 class="modal-title" id="connexionAdminModalLabel">Connexion Admin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulaire de Connexion Admin -->
+        <form action="/connexionAdmin" method="post">
+          <div class="form-group">
+            <label for="adminEmail">Email Admin</label>
+            <input type="email" class="form-control" id="adminEmail" name="mail" placeholder="Entrez votre email admin" required>
+          </div>
+          <div class="form-group">
+            <label for="adminPassword">Mot de passe</label>
+            <input type="password" class="form-control" id="adminPassword" name="password" placeholder="Entrez votre mot de passe admin" required>
+          </div>
+          <button type="submit" class="btn btn-danger btn-block mb-2">Se connecter en tant qu'admin</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Ajout de Bootstrap JS (jQuery requis) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>

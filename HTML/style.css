@@ -1,0 +1,57 @@
+.bg-custom-gray {
+    background-color: #bdc3c7 !important;
+}
+
+.bg-custom-light-green {
+    background-color: #d1e7dd !important;
+}
+
+.bg-custom-green {
+    background-color: #4caf50 !important;
+}
+
+.bg-custom-dark-green {
+    background-color: #388e3c !important;
+}
+
+.text-custom-green {
+    color: #4caf50 !important;
+}
+
+.text-custom-dark-green {
+    color: #388e3c !important;
+}
+
+.btn-custom-gray {
+    background-color: #bdc3c7 !important;
+    border-color: #bdc3c7 !important;
+    color: #ffffff !important;
+}
+
+.btn-custom-light-green {
+    background-color: #d1e7dd !important;
+    border-color: #d1e7dd !important;
+    color: #ffffff !important;
+}
+
+.btn-custom-green {
+    background-color: #4caf50 !important;
+    border-color: #4caf50 !important;
+    color: #ffffff !important;
+}
+
+.btn-custom-dark-green {
+    background-color: #388e3c !important;
+    border-color: #388e3c !important;
+    color: #ffffff !important;
+}
+
+.logo-img {
+    width: 100px !important;/* Nouvelle largeur de l'image */
+    height: auto !important; /* Hauteur automatique pour conserver les proportions */
+  }
+  
+  .logo-container {
+    padding-left: 15px; /* Ajustement de l'espacement à gauche */
+    margin-right: auto; /* Alignement à gauche */
+}

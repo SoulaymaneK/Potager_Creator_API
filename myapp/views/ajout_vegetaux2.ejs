@@ -1,0 +1,76 @@
+<%- include('header_admin.ejs', { pageTitle: 'Ajout de végétaux' }) %>
+
+<main class="container mt-5">
+    <h1 class="text-center mb-4 text-success">Ajoutez des végétaux à votre jardin</h1>
+  
+    <!-- Card for the form -->
+    <div class="card p-4 shadow-lg">
+        <form action="/admin/creer_compo_jardin" method="POST">
+            <!-- Champ caché pour l'ID du jardin -->
+            <input type="hidden" name="id_jardin" value="<%= idJardin %>">
+
+            <!-- Menu déroulant pour les végétaux avec le bouton plus -->
+            <div class="form-group mb-4">
+                <label for="vegetal" class="me-3 fs-5"><i class="fas fa-leaf text-success"></i> Sélectionnez un végétal :</label>
+                <div class="d-flex align-items-center">
+                    <select class="form-control me-2" name="vegetal_id" required style="width: auto; max-width: 200px;">
+                        <% vegetaux.forEach(function(vegetal) { %>
+                            <option value="<%= vegetal.id %>">
+                                <%= vegetal.type %>
+                            </option>
+                        <% }) %>
+                    </select>
+                    <!-- Bouton de soumission avec un + -->
+                    <button type="submit" class="btn btn-success" style="width: 45px; height: 45px;">
+                        <i class="fas fa-plus" style="font-size: 20px;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Champ pour la quantité -->
+            <div class="form-group mb-4">
+                <label for="quantite" class="fs-5"><i class="fas fa-hashtag text-success"></i> Quantité :</label>
+                <input type="number" class="form-control" name="quantite" min="1" required style="width: 60%; max-width: 100px;">
+            </div>
+        </form>
+    </div>
+
+    <!-- Tableau affichant les informations des végétaux dans le jardin -->
+    <div class="mt-4">
+        <h2 class="text-center text-success">Végétaux dans le Jardin</h2>
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nom du Végétal</th>
+                    <th>Quantité</th>              
+                    <th>Prévision de Plantation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% infoJardin.forEach(function(info) { %>
+                    <tr>
+                        <td><%= info.nom_vegetal %></td>
+                        <td><%= info.quantite %></td>
+                        <td><%= info.prevision_plantation || 'Aucune' %></td>
+                        <td>
+                            <!-- Formulaire pour supprimer un légume -->
+                            <form action="/admin/supprimer_legume_jardin" method="POST" style="display:inline;">
+                                <input type="hidden" name="id_jardin" value="<%= idJardin %>">
+                                <input type="hidden" name="vegetal_id" value="<%= info.vegetal %>">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<%- include('footer.ejs') %>
+
+<!-- Include Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

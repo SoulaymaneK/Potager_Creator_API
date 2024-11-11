@@ -1,0 +1,46 @@
+@startuml
+
+class Utilisateur {
+  id: int
+  nom: string
+  prenom: string
+  mail: string
+  mdp: string
+  date_crea: date
+}
+
+class Admin {
+  id_user: int
+  date_crea: date
+}
+
+class Jardin {
+  id: int
+  taille: int
+  localisation: string
+  utilisateur_id: int
+}
+
+class Vegetaux {
+  id: int
+  quantite: int
+  taille: int
+  typeSol: string
+  type: string
+  jardin_id: int
+}
+
+class Meteo {
+  id: int
+  jour: date
+  temperature: int
+  soleil: boolean
+  vegetaux_id: int
+}
+
+Utilisateur "1" -- "0..*" Jardin
+Jardin "1" -- "0..*" Vegetaux
+Vegetaux "1" -- "0..*" Meteo
+Admin -- Utilisateur
+
+@enduml

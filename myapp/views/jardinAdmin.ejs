@@ -1,0 +1,43 @@
+<%- include('header_admin.ejs', { pageTitle: 'Jardins de l\'Utilisateur' }) %>
+
+<main class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1>Jardins de l'Utilisateur <%= userId %></h1>
+        <!-- Bouton Ajouter Jardin -->
+        <a href="/admin/nouveau_jardin/<%= userId %>" class="btn btn-primary">Ajouter Jardin</a>
+    </div>
+
+    <section class="user-gardens mt-4">
+        <% if (jardins.length > 0) { %>
+            <h2>Mes Jardins</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Taille</th>
+                        <th>Localisation</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% jardins.forEach(jardin => { %>
+                        <tr>
+                            <td><%= jardin.nom %></td>
+                            <td><%= jardin.taille %> m²</td>
+                            <td><%= jardin.localisation %></td>
+                            <td>
+                                <a href="/admin/detail_jardin/<%= jardin.id %>" class="btn btn-info">Voir Détails</a>
+                                <a href="/admin/supprimer_jardin/<%= jardin.id %>" class="btn btn-danger">Supprimer</a>
+                                <a href="/admin/modifier_jardin/<%= jardin.id %>" class="btn btn-success">Modifier</a>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>Aucun jardin trouvé pour cet utilisateur.</p>
+        <% } %>
+    </section>
+</main>
+
+<%- include('footer.ejs') %>

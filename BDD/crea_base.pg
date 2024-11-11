@@ -1,0 +1,89 @@
+-- Recreate the utilisateur table
+CREATE TABLE IF NOT EXISTS public.utilisateur
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    nom character varying(255) COLLATE pg_catalog."default",
+    prenom character varying(255) COLLATE pg_catalog."default",
+    mail character varying(255) COLLATE pg_catalog."default",
+    mdp character varying(255) COLLATE pg_catalog."default",
+    date_crea date,
+    CONSTRAINT utilisateur_pkey PRIMARY KEY (id)
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.utilisateur
+    OWNER to postgres;
+
+-- Recreate the jardin table
+CREATE TABLE IF NOT EXISTS public.jardin
+(
+    id integer NOT NULL DEFAULT nextval('jardin_id_seq'::regclass),
+    taille integer,
+    localisation character varying(255) COLLATE pg_catalog."default",
+    utilisateur_id integer,
+    nom character varying COLLATE pg_catalog."default",
+    CONSTRAINT jardin_pkey PRIMARY KEY (id),
+    CONSTRAINT jardin_utilisateur_id_fkey FOREIGN KEY (utilisateur_id)
+        REFERENCES public.utilisateur (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.jardin
+    OWNER to postgres;
+
+-- Recreate the vegetaux table
+CREATE TABLE IF NOT EXISTS public.vegetaux
+(
+    id integer NOT NULL,
+    type character varying(255) COLLATE pg_catalog."default",
+    sol integer,
+    temp_min integer,
+    temp_max integer,
+    plantation character varying(100) COLLATE pg_catalog."default",
+    CONSTRAINT vegetaux_pkey PRIMARY KEY (id)
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.vegetaux
+    OWNER to postgres;
+
+-- Recreate the admin table
+CREATE TABLE IF NOT EXISTS public.admin
+(
+    id_user integer NOT NULL,
+    date_crea date,
+    CONSTRAINT admin_pkey PRIMARY KEY (id_user),
+    CONSTRAINT admin_id_user_fkey FOREIGN KEY (id_user)
+        REFERENCES public.utilisateur (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.admin
+    OWNER to postgres;
+
+-- Recreate the compo_jardin table
+CREATE TABLE IF NOT EXISTS public.compo_jardin
+(
+    jardin integer NOT NULL,
+    vegetal integer NOT NULL,
+    quantite integer,
+    prevision_plantation character varying(20) COLLATE pg_catalog."default",
+    CONSTRAINT compo_vegetaux_pkey PRIMARY KEY (jardin, vegetal),
+    CONSTRAINT fk_jardin FOREIGN KEY (jardin)
+        REFERENCES public.jardin (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT fk_vegetal FOREIGN KEY (vegetal)
+        REFERENCES public.vegetaux (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE CASCADE,
+    CONSTRAINT compo_jardin_prevision_plantation_check CHECK (prevision_plantation::text = ANY (ARRAY['janvier'::character varying, 'février'::character varying, 'mars'::character varying, 'avril'::character varying, 'mai'::character varying, 'juin'::character varying, 'juillet'::character varying, 'août'::character varying, 'septembre'::character varying, 'octobre'::character varying, 'novembre'::character varying, 'décembre'::character varying]::text[]))
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.compo_jardin
+    OWNER to postgres;

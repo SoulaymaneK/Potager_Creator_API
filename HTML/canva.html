@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Potager Canvas</title>
+	<style>
+		canvas {
+			border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="potagerCanvas" width="800" height="600"></canvas>
+	<script>
+		// Définition des légumes et des fruits
+		const legumes = [
+		    { nom: 'Tomate', couleur: 'rouge', x: 100, y: 100 },
+		    { nom: 'Salade', couleur: 'verte', x: 250, y: 100 },
+		    { nom: 'Carotte', couleur: 'orange', x: 400, y: 100 },
+		    { nom: 'Poivron', couleur: 'vert', x: 550, y: 100 }
+		];
+		const fruits = [
+		    { nom: 'Fraise', couleur: 'rouge', x: 100, y: 300 },
+		    { nom: 'Pomme', couleur: 'verte', x: 250, y: 300 },
+		    { nom: 'Banane', couleur: 'jaune', x: 400, y: 300 },
+		    { nom: 'Cerise', couleur: 'rouge', x: 550, y: 300 }
+		];
+
+		// Récupération du contexte Canvas
+		const canvas = document.getElementById('potagerCanvas');
+		const ctx = canvas.getContext('2d');
+
+		// Dessin du potager
+		ctx.beginPath();
+		ctx.rect(0, 0, canvas.width, canvas.height);
+		ctx.fillStyle = 'green';
+		ctx.fill();
+		ctx.closePath();
+
+		// Dessin des légumes
+		legumes.forEach(legume => {
+		    ctx.beginPath();
+		    ctx.arc(legume.x, legume.y, 50, 0, Math.PI * 2);
+		    ctx.fillStyle = legume.couleur;
+		    ctx.fill();
+		    ctx.closePath();
+
+		    ctx.font = '20px Arial';
+		    ctx.fillStyle = 'black';
+		    ctx.fillText(legume.nom, legume.x - 25, legume.y + 20);
+		});
+
+		// Dessin des fruits
+		fruits.forEach(fruit => {
+		    ctx.beginPath();
+		    ctx.arc(fruit.x, fruit.y, 50, 0, Math.PI * 2);
+		    ctx.fillStyle = fruit.couleur;
+		    ctx.fill();
+		    ctx.closePath();
+
+		    ctx.font = '20px Arial';
+		    ctx.fillStyle = 'black';
+		    ctx.fillText(fruit.nom, fruit.x - 25, fruit.y + 20);
+		});
+	</script>
+</body>
+</html>

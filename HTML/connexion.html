@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Potager - Page de Connexion et Inscription</title>
+  <!-- Ajout de Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Feuille de style personnalisée -->
+  <link href="style.css" rel="stylesheet"> 
+</head>
+<body>
+
+<div class="container logo-container">
+    <a class="navbar-brand" href="#">
+      <img src="logo.jpeg" alt="Logo" class="logo-img">MonPotager
+    </a>
+</div>
+    
+
+
+<div class="container mt-5"> 
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="text-center mb-4">
+        <h2>Bienvenue</h2>
+      </div>
+      <div class="text-center mb-3">
+        <button type="button" class="btn btn-custom-dark-green btn-block mb-2" data-toggle="modal" data-target="#connexionModal">Connexion</button>
+        <button type="button" class="btn btn-custom-dark-green btn-block mb-2" data-toggle="modal" data-target="#inscriptionModal">Inscription</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Connexion -->
+<div class="modal fade" id="connexionModal" tabindex="-1" role="dialog" aria-labelledby="connexionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="connexionModalLabel">Connexion</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire de Connexion -->
+          <form action="Droits_candidats.html" method="post">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Entrez votre email">
+            </div>
+            <div class="form-group">
+              <label for="password">Mot de passe</label>
+              <input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe">
+            </div>
+            <button type="submit" class="btn btn-custom-green btn-block mb-2">Se connecter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal d'Inscription -->
+  <div class="modal fade" id="inscriptionModal" tabindex="-1" role="dialog" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="inscriptionModalLabel">Inscription</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire d'Inscription -->
+          <form>
+            <div class="form-group">
+              <label for="Prenom">Prénom</label>
+              <input type="text" class="form-control" id="Prenom" placeholder="Entrez votre prénom">
+            </div>
+            <div class="form-group">
+              <label for="Nom">Nom</label>
+              <input type="text" class="form-control" id="Nom" placeholder="Entrez votre nom">
+            </div>
+            <div class="form-group">
+              <label for="newEmail">Email</label>
+              <input type="email" class="form-control" id="newEmail" placeholder="Entrez votre email">
+            </div>
+            <div class="form-group">
+              <label for="Telephone">Téléphone</label>
+              <input type="tel" class="form-control" id="Telephone" placeholder="Entrez votre téléphone">
+            </div>
+            <div class="form-group">
+              <label for="newPassword">Mot de passe</label>
+              <input type="password" class="form-control" id="newPassword" placeholder="Entrez votre mot de passe">
+              <small id="passwordHelpInline" class="text-muted">
+                Au minimum 12 caractères comprenant des majuscules, des minuscules, des chiffres et des caractères spéciaux à choisir dans une liste d'au moins 37 caractères spéciaux possibles.
+              </small>
+            </div>
+            <div class="form-group">
+              <label for="newPassword">Confirmer mot de passe</label>
+              <input type="password" class="form-control" id="newPassword" placeholder="Entrez votre mot de passe">
+            </div>
+            <button type="submit" class="btn btn-custom-green btn-block mb-2">S'inscrire</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Ajout de Bootstrap JS (jQuery requis) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Barre de pied de page -->
+<footer class="footer-bar fixed-bottom">
+  <div class="container text-center py-3">
+    <p>&copy; 2024 MonPermatager. Tous droits réservés.</p>
+  </div>
+</footer>
+
+</body>
+</html>

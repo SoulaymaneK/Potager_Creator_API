@@ -1,0 +1,19 @@
+Utilisateur (id, nom, prenom, mail, mdp, date_crea)
+- Utilisateur peut avoir plusieurs Recherches
+- Utilisateur peut avoir plusieurs Jardins
+- Un Compte est associé à un Utilisateur
+
+admin (id_user=>Utilisateur, date_crea)
+
+
+Jardin (id, taille, localisation, utilisateur_id)
+- Un Jardin est associé à un seul Utilisateur
+- Un Jardin peut avoir plusieurs Vegetaux
+
+Vegetaux (id, quantite, taille, typeSol, type, jardin_id)
+- Un Vegetaux appartient à un seul Jardin
+- Un Vegetaux peut avoir plusieurs Meteo
+- Le type de Vegetaux peut être "Legume" ou "Fruit"
+
+Meteo (id, jour, temperature, soleil, vegetaux_id)
+- La Meteo est associée à un seul Vegetaux

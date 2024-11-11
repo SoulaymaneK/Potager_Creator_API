@@ -1,0 +1,60 @@
+<%- include('header_admin.ejs', { pageTitle: 'Admin Dashboard - PotagerCreator' }) %>
+
+<main class="container mt-5 admin-dashboard-container min-vh-100 d-flex flex-column"> <!-- Ajout des classes min-vh-100 et d-flex flex-column -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="text-center">
+                    <h1>Bienvenue sur le tableau de bord Admin, <%= admin.name %></h1>
+                </div>
+                <!-- Ajout du bouton de déconnexion -->
+                <button class="btn btn-outline-success mb-2" onclick="window.location.href='/deconnexion'">Déconnexion</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 flex-grow-1"> <!-- Ajout de flex-grow-1 pour que le contenu prenne toute la hauteur disponible -->
+        <div class="col-md-12">
+            <section class="admin-info mb-5">
+                <h2>Liste des utilisateurs</h2>
+                <table class="table table-striped admin-users-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Admin</th>
+                            <th>Jardin(s)</th> <!-- Ajout de la colonne Jardin -->
+                            <th>Action</th> <!-- Ajout d'une colonne pour les actions -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(function(user) { %>
+                            <tr>
+                                <td><%= user.nom %></td>
+                                <td><%= user.mail %></td>
+                                <td><%= user.is_admin ? 'Oui' : 'Non' %></td>
+                                <td>
+                                    <!-- Ajout d'un bouton avec une icône pour voir le jardin -->
+                                    <a href="admin/Jardin/<%= user.id %>" class="btn btn-info">
+                                        <i class="fa fa-eye" aria-hidden="true"></i> <!-- Icône œil -->
+                                    </a>
+                                </td>
+                                <td>
+                                    <!-- Ajout du bouton en fonction du statut Admin -->
+                                    <form action="admin/switchAdmin/<%= user.id %>" method="POST">
+                                        <input type="hidden" name="userId" value="<%= user.id %>">
+                                        <button class="btn <%= user.is_admin ? 'btn-danger' : 'btn-success' %>" type="submit">
+                                            <%= user.is_admin ? 'Enlever droit admin' : 'Donner droit admin' %>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+</main>
+
+<%- include('footer.ejs') %>
